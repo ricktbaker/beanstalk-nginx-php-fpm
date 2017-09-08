@@ -1,0 +1,49 @@
+server {
+  listen       80 default_server;
+  listen       [::]:80 default_server;
+  server_name  localhost;
+  server_name localhost.com;
+
+  root /var/app/current;
+  index index.php index.html index.htm;
+
+  location / {
+    try_files $uri $uri/ /index.php;
+  }
+
+  error_page 404 /404.html;
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+     root /usr/share/nginx/www;
+  }
+
+  ## This is open to all just for demo purposes
+  location /nginx_status {
+    stub_status on;
+    access_log off;
+    #allow 127.0.0.1;
+    #deny all;
+  }
+
+  ## This is open to all just for demo purposes
+  location ~ ^/(status|ping)$ {
+    access_log off;
+    #allow 127.0.0.1;
+    #deny all;
+    include fastcgi_params_env;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_pass unix:/var/run/php-fpm/www.sock;
+  }
+
+  # pass the PHP scripts to FastCGI server listening on the php-fpm socket
+  location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_pass unix:/var/run/php-fpm/www.sock;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params_env;
+    include fastcgi_params;
+  }
+}
