@@ -18,6 +18,12 @@ stick with the default AMI and handle all of your setup via .ebextensions?
 4. Make sure nginx and phpfpm start on reboot
 5. Make sure environment variables are updated on both a configuration and app deployment
 
+## How do I use it?
+
+You can pull down this repo, zip up the contents, making sure you include the .ebextensions directory and deploy to your
+beanlstalk application.   Once the deployment has finished you should be able to hit your beanstalk ip and pull up both
+the index.html and the index.php file.
+
 ## Environment variables
 Environment variables are set in the /etc/nginx/fastcgi_params_env file and you can include them in your server block.
 You'll see an example of this in the default.   This file will get updated with any environment variable changes on both
