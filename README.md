@@ -4,12 +4,6 @@ If you find yourself wanting to use Nginx and PHP-FPM instead of apache for your
 
 This is a sample deployment with all of the .ebextensions to do so without having to make a custom AMI
 
-## Why not create a custom AMI?
-
-You can go this route, but then in a few months when you want to use the latest version of amazon linux you'll need to
-completely recreate your custom AMI all over again.  That gets to be a pain over the course of time.   So, why not just
-stick with the default AMI and handle all of your setup via .ebextensions?
-
 ## What's accomplished here?
 
 1. We swap out PHP 7.0 with PHP 7.1 because currently the amazon linux ami only comes with PHP 7.0.
@@ -37,6 +31,12 @@ You can get environment variables in your php script with:
 
 You'll find the base config files within the .ebextensions directory.   You can modify as needed and they will take effect
 when you deploy.
+
+## Why not create a custom AMI?
+
+You can go this route, but then in a few months when you want to use the latest version of amazon linux you'll need to
+completely recreate your custom AMI all over again.  That gets to be a pain over the course of time.   So, why not just
+stick with the default AMI and handle all of your setup via .ebextensions?
 
 ## I don't understand what's happening when I deploy?
 
