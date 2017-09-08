@@ -15,8 +15,8 @@ This is a sample deployment with all of the .ebextensions to do so without havin
 ## How do I use it?
 
 You can pull down this repo, zip up the contents, making sure you include the .ebextensions directory and deploy to your
-beanlstalk application.   Once the deployment has finished you should be able to hit your beanstalk ip and pull up both
-the index.html and the index.php file.
+beanlstalk application.   Once the deployment has finished you should be able to hit your beanstalk ip and get the hello
+world response.
 
 ## Environment variables
 Environment variables are set in the /etc/nginx/fastcgi_params_env file and you can include them in your server block.
