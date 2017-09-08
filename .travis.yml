@@ -1,0 +1,9 @@
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: <access-key-id>
+  secret_access_key:
+    secure: "Encypted <secret-access-key>="
+  region: "us-east-1"
+  app: "example-app-name"
+  env: "example-app-environment"
+  bucket_name: "the-target-S3-bucket"
