@@ -1,3 +1,1 @@
-<?php
-
-echo "Hello World.  This is a php response";
+<?php echo('Hello World');

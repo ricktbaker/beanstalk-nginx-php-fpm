@@ -6,11 +6,10 @@ This is a sample deployment with all of the .ebextensions to do so without havin
 
 ## What's accomplished here?
 
-1. We swap out PHP 7.0 with PHP 7.1 because currently the amazon linux ami only comes with PHP 7.0.
-2. Install nginx and phpfpm-71
-3. Stop apache and keep it from starting up again
-4. Make sure nginx and phpfpm start on reboot
-5. Make sure environment variables are updated on both a configuration and app deployment
+1. Install nginx and phpfpm-71
+2. Stop apache and keep it from starting up again
+3. Make sure nginx and phpfpm start on reboot
+4. Make sure environment variables are updated on both a configuration and app deployment
 
 ## How do I use it?
 
@@ -41,11 +40,8 @@ stick with the default AMI and handle all of your setup via .ebextensions?
 ## I don't understand what's happening when I deploy?
 
 Take a look at the .ebextensions/01_setup.config file.   I've commented each step.   Things in the "commands" section
-happen early in the deployment process before your actual code is setup.    Things in the "container_commands" section
-happen after your deployment zip file has been expanded, but before it is moved into the final /var/app/current directory
+happen early in the deployment process before your actual code is setup.
 
 ## Why not just get rid of apache completely?
 This ends up being a complete pain.   Beanstalk has many commands baked in with apache, so it just gets troublesome to
-get them all.    So instead we keep apache in place but just replace the daemon file with an empty shell script, so if any
-beanstalk command tries to start it up again, it won't be able to.
-
+get them all.    So instead we keep apache in place but just tell Elasticbeanstalk to disable it.
