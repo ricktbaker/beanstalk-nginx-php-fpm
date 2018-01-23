@@ -6,7 +6,7 @@ This is a sample deployment with all of the .ebextensions to do so without havin
 
 ## What's accomplished here?
 
-1. Install nginx and phpfpm-71
+1. Install nginx
 2. Stop apache and keep it from starting up again
 3. Make sure nginx and phpfpm start on reboot
 4. Make sure environment variables are updated on both a configuration and app deployment
