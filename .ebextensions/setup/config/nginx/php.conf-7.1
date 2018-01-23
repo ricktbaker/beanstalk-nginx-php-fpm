@@ -9,5 +9,6 @@ location ~ \.php$ {
     fastcgi_intercept_errors on;
     fastcgi_index  index.php;
     include        fastcgi.conf;
+    include        fastcgi_params_env;
     fastcgi_pass   php-fpm;
 }
