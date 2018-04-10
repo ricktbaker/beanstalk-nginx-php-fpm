@@ -1,0 +1,32 @@
+## set up custom logging for nginx and php-fpm
+
+packages:
+  yum:
+    awslogs: []
+
+files:
+  "/etc/awslogs/config/nginx-php.conf" :
+    mode: "000600"
+    owner: root
+    group: root
+    content: |
+      [/var/php-fpm/7.1/www-error.log]
+      log_group_name = `{"Fn::Join":["/", ["/aws/elasticbeanstalk", { "Ref":"AWSEBEnvironmentName" }, "var/log/php-fpm/7.1/www-error.log"]]}`
+      log_stream_name = {instance_id}
+      file = /var/log/php-fpm/7.1/www-error.log
+
+      [/var/log/nginx/access.log]
+      log_group_name = `{"Fn::Join":["/", ["/aws/elasticbeanstalk", { "Ref":"AWSEBEnvironmentName" }, "var/log/nginx/access.log "]]}`
+      log_stream_name = {instance_id}
+      file = /var/log/nginx/access.log 
+
+      [/var/log/nginx/error.log]
+      log_group_name = `{"Fn::Join":["/", ["/aws/elasticbeanstalk", { "Ref":"AWSEBEnvironmentName" }, "var/log/nginx/error.log "]]}`
+      log_stream_name = {instance_id}
+      file = /var/log/nginx/error.log 
+
+commands:
+  "01":
+    command: chkconfig awslogs on
+  "02":
+    command: service awslogs restart
